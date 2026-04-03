@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muscle Prep | Fuel Your Gains</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #dc2626; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #b91c1c; }
+        
+        .fade-in {
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            light: '#ef4444', 
+                            DEFAULT: '#dc2626',
+                            dark: '#b91c1c',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-amber-50 text-gray-800 font-sans antialiased">
+
+    <nav class="bg-white shadow-md fixed w-full z-50 top-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <i class="fa-solid fa-fire-burner text-brand text-3xl mr-3"></i>
+                    <span class="font-black text-2xl tracking-tight text-brand uppercase">Muscle Prep</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#menu" class="text-gray-600 hover:text-brand font-bold transition">Our Menu</a>
+                    <a href="#register" class="text-gray-600 hover:text-brand font-bold transition">Register</a>
+                    <a href="#order" class="bg-brand text-white px-6 py-2 rounded-full font-bold hover:bg-brand-dark transition shadow-lg hover:shadow-xl">Order Now</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-gray-900">
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1920&q=80" alt="Healthy Food" class="w-full h-full object-cover opacity-20">
+        </div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-6xl font-black text-white mb-6 uppercase tracking-wider drop-shadow-lg">
+                Fuel Your Body.<br><span class="text-brand">Smash Your Goals.</span>
+            </h1>
+            <p class="mt-4 text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-10">
+                Premium, protein-rich breakfast meal sample kits designed by nutritionists and athletes.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#order" class="bg-brand hover:bg-brand-dark text-white font-bold py-4 px-10 rounded-full text-lg transition shadow-[0_0_15px_rgba(220,38,38,0.5)]">
+                    Grab a Sample Kit
+                </a>
+                <a href="#menu" class="bg-white hover:bg-gray-100 text-brand font-bold py-4 px-10 rounded-full text-lg transition">
+                    View Menu
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="menu" class="py-20 bg-amber-50 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-black text-brand mb-2 uppercase tracking-widest" style="-webkit-text-stroke: 1px #dc2626; color: transparent;">MENU</h2>
+                <h2 class="text-4xl md:text-5xl font-black text-brand mb-4 uppercase tracking-widest">MENU</h2>
+                <div class="w-24 h-1 bg-brand mx-auto rounded-full mb-4"></div>
+                <p class="text-gray-600 text-lg font-bold">Click on any meal to view its nutritional pie chart!</p>
+            </div>
+
+            <div id="menu-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                </div>
+        </div>
+    </section>
+
+    <section id="register" class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gray-50 rounded-3xl shadow-xl overflow-hidden flex flex-col md:flex-row border border-gray-200">
+                <div class="md:w-2/5 bg-brand text-white p-10 flex flex-col justify-center">
+                    <h3 class="text-3xl font-black mb-4">Join Muscle Prep</h3>
+                    <p class="mb-6 opacity-90">Sign up for our upcoming full-service meal plans and get exclusive early-bird discounts.</p>
+                </div>
+                <div class="md:w-3/5 p-10">
+                    <form onsubmit="handleRegister(event)" class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-2">Full Name</label>
+                            <input type="text" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand outline-none transition" placeholder="John Doe">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-2">Email Address</label>
+                            <input type="email" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand outline-none transition" placeholder="john@example.com">
+                        </div>
+                        <button type="submit" class="w-full bg-gray-900 hover:bg-gray-800 text-white font-bold py-3 px-4 rounded-lg transition">
+                            Pre-Register Now
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="order" class="py-20 bg-amber-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-4 uppercase">Order Sample Kits</h2>
+                <div class="w-24 h-1 bg-brand mx-auto rounded-full"></div>
+            </div>
+
+            <form id="orderForm" onsubmit="handleOrder(event)" class="bg-white p-8 rounded-2xl shadow-xl border border-gray-100">
+                <h3 class="text-xl font-bold mb-6 border-b pb-2"><i class="fa-solid fa-user text-brand mr-2"></i> Delivery Details</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">Full Name</label>
+                        <input type="text" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">Phone Number</label>
+                        <input type="tel" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand outline-none" placeholder="+91">
+                    </div>
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-bold text-gray-700 mb-2">Complete Delivery Address</label>
+                        <textarea required rows="3" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand outline-none"></textarea>
+                    </div>
+                </div>
+
+                <h3 class="text-xl font-bold mb-6 border-b pb-2"><i class="fa-solid fa-box-open text-brand mr-2"></i> Select Your Meals</h3>
+                <div id="order-meals-container" class="space-y-4 mb-8">
+                    </div>
+
+                <h3 class="text-xl font-bold mb-6 border-b pb-2"><i class="fa-solid fa-credit-card text-brand mr-2"></i> Payment Method</h3>
+                <div class="mb-8">
+                    <div class="flex space-x-6 mb-4">
+                        <label class="flex items-center cursor-pointer">
+                            <input type="radio" name="payment" value="upi" checked onchange="togglePaymentUI()" class="w-5 h-5 text-brand focus:ring-brand">
+                            <span class="ml-2 font-semibold">UPI Payment</span>
+                        </label>
+                        <label class="flex items-center cursor-pointer">
+                            <input type="radio" name="payment" value="card" onchange="togglePaymentUI()" class="w-5 h-5 text-brand focus:ring-brand">
+                            <span class="ml-2 font-semibold">Credit/Debit Card</span>
+                        </label>
+                    </div>
+
+                    <div id="upi-details" class="fade-in bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <label class="block text-sm font-bold text-gray-700 mb-2">Enter UPI ID</label>
+                        <input type="text" placeholder="example@okhdfcbank" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand outline-none">
+                    </div>
+
+                    <div id="card-details" class="hidden fade-in bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <div class="mb-4">
+                            <label class="block text-sm font-bold text-gray-700 mb-2">Card Number</label>
+                            <input type="text" placeholder="XXXX XXXX XXXX XXXX" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand outline-none">
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full bg-brand hover:bg-brand-dark text-white font-black text-xl py-4 rounded-xl shadow-lg transition transform hover:-translate-y-1">
+                    Place Order Securely
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center border-b border-gray-800 pb-8 mb-8">
+                <div class="flex items-center mb-6 md:mb-0">
+                    <i class="fa-solid fa-fire-burner text-brand text-4xl mr-3"></i>
+                    <div>
+                        <span class="font-black text-3xl tracking-tight uppercase block">Muscle Prep</span>
+                        <span class="text-brand font-semibold tracking-widest text-sm">MEAL PREP TEAM</span>
+                    </div>
+                </div>
+                
+                <div class="text-center md:text-right">
+                    <h4 class="text-lg font-bold mb-4 uppercase text-gray-400">Contact Us</h4>
+                    <div class="space-y-2 text-lg font-mono bg-gray-800 py-3 px-6 rounded-lg shadow-inner">
+                        <p class="flex items-center justify-center md:justify-end gap-3"><i class="fa-solid fa-phone text-brand"></i> +91 7903877218</p>
+                        <p class="flex items-center justify-center md:justify-end gap-3"><i class="fa-solid fa-phone text-brand"></i> +91 6361840729</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="success-modal" class="fixed inset-0 bg-black bg-opacity-75 z-[100] hidden flex items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-white rounded-3xl p-8 md:p-12 max-w-md w-full text-center relative transform transition-all scale-95 opacity-0" id="modal-content">
+            <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i class="fa-solid fa-check text-4xl text-green-500"></i>
+            </div>
+            <h2 class="text-3xl font-black text-gray-900 mb-2">Thank You!</h2>
+            <p class="text-gray-600 mb-8 text-lg">Your order has been placed successfully. Our team will start preparing your fresh meals shortly!</p>
+            <button onclick="closeModal()" class="w-full bg-brand text-white font-bold py-3 rounded-lg hover:bg-brand-dark transition">Back to Website</button>
+        </div>
+    </div>
+
+    <script>
+        // Updated Image URLs to perfectly match your uploaded files
+        const meals = [
+            { id: 1, name: "Egg Shakshuka", price: "150", cals: 302, protein: "20", macros: { protein: 20, carbs: 15, fat: 18 }, img: "https://zimmysnook.ca/wp-content/uploads/2024/03/IMG_4359-2-e1709389769495.jpg" },
+            { id: 2, name: "Cottage Cheese Pancakes with Berries & Yogurt", price: "170", cals: 368, protein: "30", macros: { protein: 30, carbs: 35, fat: 12 }, img: "https://www.willpowders.com/cdn/shop/articles/Cottage_Cheese_Pancakes_ebe1f25e-400e-469d-aea6-e0b2f67221f3_1080x1080.jpg?v=1759740602be2" },
+            { id: 3, name: "Blueberry Smoothie Bowl", price: "275", cals: 352, protein: "25", macros: { protein: 25, carbs: 45, fat: 8 }, img: "https://thehintofrosemary.com/wp-content/uploads/2022/04/Blueberry-smoothie-bowl-recipe-2-768x1024.jpg" },
+            { id: 4, name: "Breakfast Egg & Chicken Burrito", price: "185", cals: 439, protein: "36", macros: { protein: 36, carbs: 40, fat: 15 }, img: "https://www.cookingclassy.com/wp-content/uploads/2019/08/breakfast-burrito-01.jpg" },
+            { id: 5, name: "Chicken Caesar Salad", price: "235", cals: 402, protein: "41", macros: { protein: 41, carbs: 10, fat: 22 }, img: "https://damndelicious.net/wp-content/uploads/2023/01/220905_DD_Chx-Caesar-Salad_051.jpg" },
+            { id: 6, name: "Moong Dal Chilla with Peanut Chutney", price: "130", cals: 250, protein: "15", macros: { protein: 15, carbs: 25, fat: 10 }, img: "https://www.cubesnjuliennes.com/wp-content/uploads/2018/12/Moong-Palak-Cheela-recipe.jpg" }
+        ];
+
+        let charts = {};
+
+        function renderMenu() {
+            const container = document.getElementById('menu-container');
+            const orderContainer = document.getElementById('order-meals-container');
+            
+            meals.forEach(meal => {
+                // Build Menu Card (Clickable)
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-2xl shadow-md overflow-hidden cursor-pointer transition transform hover:shadow-2xl hover:-translate-y-2 relative border border-gray-100";
+                card.onclick = () => toggleNutrition(meal.id);
+                
+                card.innerHTML = `
+                    <div class="h-56 overflow-hidden relative">
+                        <img src="${meal.img}" alt="${meal.name}" class="w-full h-full object-cover">
+                        <div class="absolute top-4 left-4 bg-brand text-white w-16 h-16 rounded-full flex items-center justify-center text-xl font-black shadow-lg">
+                            ${meal.price}/-
+                        </div>
+                    </div>
+                    
+                    <div class="p-6 text-center">
+                        <h3 class="text-lg font-black text-brand uppercase mb-2 h-14 flex items-center justify-center leading-tight">${meal.name}</h3>
+                        <p class="text-gray-700 font-bold text-lg mb-2">(${meal.protein} G PROTEIN)</p>
+                        
+                        <div class="text-xs text-gray-400 font-semibold mb-4"><i class="fa-solid fa-hand-pointer"></i> Click to view macros</div>
+                        
+                        <div id="chart-container-${meal.id}" class="hidden mt-2 pt-4 border-t border-gray-100 transition-all">
+                            <h4 class="text-center text-sm font-bold text-gray-500 mb-2 uppercase tracking-wider">Estimated Nutrition</h4>
+                            <div class="relative h-48 w-full">
+                                <canvas id="chart-${meal.id}"></canvas>
+                            </div>
+                            <div class="flex justify-center gap-4 mt-3 text-xs font-bold">
+                                <span class="text-red-500"><i class="fa-solid fa-circle text-[8px]"></i> Pro: ${meal.macros.protein}g</span>
+                                <span class="text-blue-500"><i class="fa-solid fa-circle text-[8px]"></i> Carb: ${meal.macros.carbs}g</span>
+                                <span class="text-orange-400"><i class="fa-solid fa-circle text-[8px]"></i> Fat: ${meal.macros.fat}g</span>
+                            </div>
+                            <div class="mt-2 text-center text-sm font-black text-gray-800">Total: ~${meal.cals} kcal</div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+
+                // Build Order Dropdowns
+                const orderRow = document.createElement('div');
+                orderRow.className = "flex items-center justify-between bg-white p-3 rounded-lg border border-gray-200 shadow-sm";
+                orderRow.innerHTML = `
+                    <div class="flex items-center gap-3 w-3/4">
+                        <img src="${meal.img}" class="w-12 h-12 rounded-full object-cover shadow-sm">
+                        <div>
+                            <p class="font-bold text-gray-900 truncate">${meal.name}</p>
+                            <p class="text-xs text-brand font-bold">₹${meal.price} | ${meal.protein}g Protein</p>
+                        </div>
+                    </div>
+                    <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-brand focus:border-brand block p-2 outline-none font-bold w-1/4">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                `;
+                orderContainer.appendChild(orderRow);
+            });
+        }
+
+        // Toggle Chart View
+        function toggleNutrition(mealId) {
+            const container = document.getElementById(`chart-container-${mealId}`);
+            const canvasId = `chart-${mealId}`;
+            
+            if (container.classList.contains('hidden')) {
+                container.classList.remove('hidden');
+                container.classList.add('fade-in');
+                
+                if (!charts[canvasId]) {
+                    const meal = meals.find(m => m.id === mealId);
+                    const ctx = document.getElementById(canvasId).getContext('2d');
+                    
+                    const totalMacros = meal.macros.protein + meal.macros.carbs + meal.macros.fat;
+                    const pPct = ((meal.macros.protein / totalMacros) * 100).toFixed(1);
+                    const cPct = ((meal.macros.carbs / totalMacros) * 100).toFixed(1);
+                    const fPct = ((meal.macros.fat / totalMacros) * 100).toFixed(1);
+
+                    charts[canvasId] = new Chart(ctx, {
+                        type: 'pie',
+                        data: {
+                            labels: ['Protein %', 'Carbs %', 'Fat %'],
+                            datasets: [{
+                                data: [pPct, cPct, fPct],
+                                backgroundColor: ['#ef4444', '#3b82f6', '#fb923c'],
+                                borderWidth: 2,
+                                borderColor: '#ffffff',
+                                hoverOffset: 4
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: { display: false },
+                                tooltip: { callbacks: { label: function(c) { return c.label + ': ' + c.raw + '%'; } } }
+                            }
+                        }
+                    });
+                }
+            } else {
+                container.classList.add('hidden');
+                container.classList.remove('fade-in');
+            }
+        }
+
+        function togglePaymentUI() {
+            const isUpi = document.querySelector('input[name="payment"]:checked').value === 'upi';
+            document.getElementById('upi-details').classList.toggle('hidden', !isUpi);
+            document.getElementById('card-details').classList.toggle('hidden', isUpi);
+        }
+
+        function handleRegister(e) {
+            e.preventDefault();
+            const content = document.getElementById('modal-content');
+            content.querySelector('h2').innerText = 'Registration Successful!';
+            content.querySelector('p').innerText = 'Welcome! We will notify you when our full services launch.';
+            showModal();
+            e.target.reset();
+        }
+
+        function handleOrder(e) {
+            e.preventDefault();
+            const selects = document.querySelectorAll('#order-meals-container select');
+            let totalMeals = 0;
+            selects.forEach(s => totalMeals += parseInt(s.value));
+
+            if (totalMeals === 0) {
+                alert("Please select at least one meal to order!");
+                return;
+            }
+
+            const content = document.getElementById('modal-content');
+            content.querySelector('h2').innerText = 'Thank You!';
+            content.querySelector('p').innerText = 'Your order has been placed successfully. We are preparing your fresh meals!';
+            showModal();
+            e.target.reset();
+            selects.forEach(s => s.value = "0");
+        }
+
+        function showModal() {
+            const modal = document.getElementById('success-modal');
+            const content = document.getElementById('modal-content');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                content.classList.remove('scale-95', 'opacity-0');
+                content.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('success-modal');
+            const content = document.getElementById('modal-content');
+            content.classList.remove('scale-100', 'opacity-100');
+            content.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => modal.classList.add('hidden'), 300);
+        }
+
+        window.onload = renderMenu;
+    </script>
+</body>
+</html>
+```
